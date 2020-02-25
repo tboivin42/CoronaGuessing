@@ -1,0 +1,17 @@
+{
+  "users":
+  [
+    {
+      "login": "fakeUser",
+      "mail": "fake@yahoo.fr",
+      "password": "fake",
+      "infected": true
+    },
+    {
+      "login": "fakeUser2",
+      "mail": "fake2@yahoo.fr",
+      "password": "fake",
+      "infected": true
+    }
+  ]
+}
