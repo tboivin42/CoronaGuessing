@@ -32,7 +32,8 @@ const UserSchema = new mongoose.Schema({
   },
   password: { type: String, required: true, max: 100 
   },
-  infected: { type: Boolean, required: true }
+  latitude: { type: Number },
+  longitude: { type: Number }
 })
 
 module.exports = mongoose.model('Users', UserSchema)
