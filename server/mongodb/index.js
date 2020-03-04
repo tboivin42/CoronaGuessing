@@ -9,16 +9,16 @@ Connection.on('connected', () => {
 })
 
 Connection.on('disconnected', () => {
-  console.log('disconnected to db');
+  console.log('Disconnected to db');
 })
 
 Connection.on('error', (err) => {
-  console.log('db connection error', err);
+  console.log('DB connection error', err);
 })
 
 process.on('SIGINT', () => {
   Connection.close(() => {
-    console.log('db connection closed due to process termination')
+    console.log('DB connection closed due to process termination')
     process.exit(0)
   })
 })
@@ -32,6 +32,7 @@ const UserSchema = new mongoose.Schema({
   },
   password: { type: String, required: true, max: 100 
   },
+  message: { type: String, max: 50 },
   latitude: { type: Number },
   longitude: { type: Number }
 })

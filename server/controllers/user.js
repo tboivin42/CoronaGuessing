@@ -29,6 +29,16 @@ const addUser = (req, res) => {
     })
 }
 
+const getAllUsers = (req, res) => {
+  User.find((err, users) => {
+    if (err) {
+      console.log(err)
+    } else {
+      res.send(users)
+    }
+  })
+}
+
 const getUserById = (req, res) => {
   const { id: userId } = req.params;
   User.findById(userId)
@@ -41,6 +51,8 @@ const updateUser = (req, res) => {
   const { id: userId } = req.params;
   const userInput = req.body;
 
+  console.log('HEY BEBE')
+
   User.findByIdAndUpdate(userId, userInput, { new: true })
     .exec()
     .then(() => res.send({ message: 'User updated' }))
@@ -49,6 +61,8 @@ const updateUser = (req, res) => {
 const deleteUser = (req, res) => {
   const { id: userId } = req.params;
 
+  console.log('coucou toi')
+
   User.findByIdAndRemove(userId)
     .exec()
     .then(() => res.send({ message: 'User deleted' }))
@@ -56,15 +70,16 @@ const deleteUser = (req, res) => {
 }
 
 const login = (req, res) => {
-  const { login: userLogin, password: loginPassword } = req.body;
+  const { email: userMail, password: userPassword } = req.body;
 
   const privateKey = 'private';
-  User.findOne({ login: userLogin })
+  User.findOne({ mail: userMail })
     .exec()
-    .then(user => crypto.arePasswordsEquals(loginPassword, user.password)
+    .then(user => crypto.arePasswordsEquals(userPassword, user.password)
       .then((isCompare) => {
         if (isCompare) {
-          const token = jwt.sign({ sub: user.id }, privateKey, { expiresIn: '30m' })
+          const token = jwt.sign({ sub: user._id }, privateKey, { expiresIn: '30m' }, { algorithm: 'HS256'})
+          console.log(user)
           res.json(({ success: true, token: `JWT ${token}`, user }))
         } else {
           res.status(401).send({ message: 'Invalid identification' })
@@ -77,3 +92,4 @@ module.exports.getUserById = getUserById;
 module.exports.updateUser = updateUser;
 module.exports.deleteUser = deleteUser;
 module.exports.login = login;
+module.exports.getAllUsers = getAllUsers;

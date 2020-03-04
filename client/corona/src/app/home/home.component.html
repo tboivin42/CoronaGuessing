@@ -1,0 +1,12 @@
+<div class="card">
+  <div class="card-header">
+    <h4>Corona's Map</h4>
+  <p style="text-align:center">Il y à {{ infected.length }} infecté.e.es</p>
+  <h6 *ngIf="authService.isLoggedIn()">Si vous êtes ici c'est que vous êtes infécté veuillez, s'il vous plaît:</h6>
+  <button *ngIf="authService.isLoggedIn()" (click)="apiService.updatePosition()" class="btn btn-outline-success my-2 my-sm-0" type="submit">Actualisez votre position</button>
+  </div>
+  <div class="card-body">
+    <div id="frugalmap">
+    </div>
+  </div>
+</div>

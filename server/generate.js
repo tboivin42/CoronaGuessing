@@ -1,10 +1,10 @@
-const User = require('./mongodb/index');
+const Users = require('./mongodb/index');
 const dataJSON = require('./data.json');
 
 
   const { users } = dataJSON;
 
   users.map((data) => {
-    const game = new User(data); // Initialize a model with games data
-    game.save(); // and save it into the database
+    const user = new Users(data); // Initialize a model with users data
+    user.save(); // and save it into the database
   });

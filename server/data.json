@@ -5,13 +5,17 @@
       "login": "fakeUser",
       "mail": "fake@yahoo.fr",
       "password": "fake",
-      "infected": true
+      "message": "La vie d'infécté est difficile :(",
+      "latitude": 48.8537,
+      "longitude": 2.549
     },
     {
       "login": "fakeUser2",
       "mail": "fake2@yahoo.fr",
       "password": "fake",
-      "infected": true
+      "message": "Je suis triste et infécté :(",
+      "latitude": 48.8856123,
+      "longitude": 2.3236024 
     }
   ]
 }

@@ -1,0 +1,40 @@
+<div *ngIf="authService.isLoggedIn()" class="login">
+  <h2 class="login-header">Modification de votre profil</h2>
+  <form [formGroup]="updateForm" class="login-container" (ngSubmit)="updateUser()">
+
+    <p [ngClass]="{ 'has-error': isSubmitted }">
+      <input type="text" placeholder="Changez votre pseudo" formControlName="login">
+    </p>
+
+    <p [ngClass]="{ 'has-error': isSubmitted }">
+      <input type="text" placeholder="Personnalisez votre message visible par tous" formControlName="message">
+    </p>
+
+    <p [ngClass]="{ 'has-error': isSubmitted && formControls.email.errors }">
+      <input type="email" placeholder="Email" formControlName="email">
+    </p>
+
+    <div *ngIf="isSubmitted && formControls.email.errors" class="help-block">
+      <div *ngIf="formControls.email.errors.required">Email is required</div>
+    </div>
+
+    <div *ngIf="isSubmitted" class="help-block">
+      <div>Un message est requis</div>
+    </div>
+
+    <p [ngClass]="{ 'has-error': isSubmitted && formControls.password.errors }">
+      <input type="text" placeholder="Change your password" formControlName="password">
+    </p>
+
+    <div *ngIf="isSubmitted && formControls.password.errors" class="help-block">
+      <div *ngIf="formControls.password.errors.required">Password is required</div>
+    </div>
+
+    <p>
+      <input type="submit" value="Update">
+    </p>
+  </form>
+</div>
+<!-- <div *ngIf="authService.isLoggedIn()" class="alert alert-success" role="alert">
+  Vous êtes bien connécté !
+</div> -->
